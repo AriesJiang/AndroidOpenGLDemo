@@ -12,6 +12,7 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLUtils;
 import android.opengl.Matrix;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -65,6 +66,14 @@ public abstract class AFilter implements GLSurfaceView.Renderer {
             1.0f,1.0f,
     };
 
+    //180
+//    private final float[] sCoord={
+//            1.0f,1.0f,
+//            1.0f,0.0f,
+//            0.0f,1.0f,
+//            0.0f,0.0f,
+//    };
+
     public AFilter(Context context,String vertex,String fragment){
         this.mContext=context;
         this.vertex=vertex;
@@ -110,11 +119,15 @@ public abstract class AFilter implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         GLES20.glViewport(0,0,width,height);
-
+        Log.d("", "width=" + width + "   height=" + height);
         int w=mBitmap.getWidth();
         int h=mBitmap.getHeight();
+        Log.d("", "mBitmap.getWidth()=" + w + "   mBitmap.getHeight()=" + h);
+
         float sWH=w/(float)h;
         float sWidthHeight=width/(float)height;
+        Log.d("", "sWH=" + sWH + "   sWidthHeight=" + sWidthHeight);
+
         uXY=sWidthHeight;
         if(width>height){
             if(sWH>sWidthHeight){
@@ -126,7 +139,8 @@ public abstract class AFilter implements GLSurfaceView.Renderer {
             if(sWH>sWidthHeight){
                 Matrix.orthoM(mProjectMatrix, 0, -1, 1, -1/sWidthHeight*sWH, 1/sWidthHeight*sWH,3, 5);
             }else{
-                Matrix.orthoM(mProjectMatrix, 0, -1, 1, -sWH/sWidthHeight, sWH/sWidthHeight,3, 5);
+//                Matrix.orthoM(mProjectMatrix, 0, -1, 1, -sWH/sWidthHeight, sWH/sWidthHeight,3, 5); //crop 只能显示图片的一部分
+                Matrix.orthoM(mProjectMatrix, 0, -sWidthHeight/sWH,sWidthHeight/sWH, -1, 1,3, 5); //fit 显示完整的图片
             }
         }
         //设置相机位置

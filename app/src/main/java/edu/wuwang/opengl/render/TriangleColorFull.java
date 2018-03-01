@@ -128,7 +128,7 @@ public class TriangleColorFull extends Shape {
         //指定vMatrix的值
         GLES20.glUniformMatrix4fv(mMatrixHandler,1,false,mMVPMatrix,0);
         //获取顶点着色器的vPosition成员句柄
-        mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
+        mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition"); //glGetAttribLocation()方法获取Java代码中的position变量的句柄
         //启用三角形顶点的句柄
         GLES20.glEnableVertexAttribArray(mPositionHandle);
         //准备三角形的坐标数据
@@ -138,10 +138,10 @@ public class TriangleColorFull extends Shape {
         //获取片元着色器的vColor成员的句柄
         mColorHandle = GLES20.glGetAttribLocation(mProgram, "aColor");
         //设置绘制三角形的颜色
-        GLES20.glEnableVertexAttribArray(mColorHandle);
+        GLES20.glEnableVertexAttribArray(mColorHandle); //必须使用glEnableVertexAttribArray()方法启用句柄
         GLES20.glVertexAttribPointer(mColorHandle,4,
                 GLES20.GL_FLOAT,false,
-                0,colorBuffer);
+                0,colorBuffer); //使用glVertexAttribPointer()方法来将position句柄指向我们的顶点缓冲区,该方法还要求每个顶点的坐标数，坐标的类型以及每个顶点的字节偏移量。
         //绘制三角形
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
         //禁止顶点数组的句柄
