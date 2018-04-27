@@ -16,6 +16,7 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 /**
  * Description:
@@ -60,6 +61,7 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer 
         mCameraDrawer.getSurfaceTexture().setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
             @Override
             public void onFrameAvailable(SurfaceTexture surfaceTexture) {
+                Log.e("CameraView", "CameraView onFrameAvailable");
                 requestRender();
             }
         });

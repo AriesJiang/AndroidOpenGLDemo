@@ -35,7 +35,7 @@ public class FGLRender extends Shape {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0.5f,0.5f,0.5f,1.0f);
-        Log.e("wuwang","onSurfaceCreated");
+        Log.e("FGLRender","onSurfaceCreated");
         try {
             Constructor constructor=clazz.getDeclaredConstructor(View.class);
             constructor.setAccessible(true);
@@ -49,7 +49,7 @@ public class FGLRender extends Shape {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        Log.e("wuwang","onSurfaceChanged");
+        Log.e("FGLRender","onSurfaceChanged");
         GLES20.glViewport(0,0,width,height);
 
         shape.onSurfaceChanged(gl, width, height);
@@ -57,7 +57,7 @@ public class FGLRender extends Shape {
 
     @Override
     public void onDrawFrame(GL10 gl) {
-        Log.e("wuwang","onDrawFrame");
+        Log.e("FGLRender","onDrawFrame");
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT|GLES20.GL_DEPTH_BUFFER_BIT);
         shape.onDrawFrame(gl);
     }

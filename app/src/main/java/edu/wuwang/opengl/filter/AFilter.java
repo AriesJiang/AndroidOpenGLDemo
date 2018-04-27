@@ -116,6 +116,7 @@ public abstract class AFilter {
     }
 
     public void draw(){
+        Log.d("AFilter", "AFilter draw");
         onClear();
         onUseProgram();
         onSetExpandData();

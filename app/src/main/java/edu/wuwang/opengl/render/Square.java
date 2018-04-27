@@ -8,6 +8,7 @@ package edu.wuwang.opengl.render;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+import android.util.Log;
 import android.view.View;
 
 import java.nio.ByteBuffer;
@@ -119,6 +120,7 @@ public class Square extends Shape {
 
     @Override
     public void onDrawFrame(GL10 gl) {
+        Log.e("Square", "onDrawFrame----Square");
         //将程序加入到OpenGLES2.0环境
         GLES20.glUseProgram(mProgram);
         //获取变换矩阵vMatrix成员句柄

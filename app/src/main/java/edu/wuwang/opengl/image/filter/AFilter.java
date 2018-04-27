@@ -66,6 +66,14 @@ public abstract class AFilter implements GLSurfaceView.Renderer {
             1.0f,1.0f,
     };
 
+    //90
+//    private final float[] sCoord={
+//            0.0f,1.0f,
+//            0.0f,0.0f,
+//            1.0f,1.0f,
+//            1.0f,0.0f,
+//    };
+
     //180
 //    private final float[] sCoord={
 //            1.0f,1.0f,
