@@ -116,7 +116,7 @@ public abstract class AFilter {
     }
 
     public void draw(){
-        Log.d("AFilter", "AFilter draw");
+        Log.d("AFilter", "AFilter draw Thread name=" + Thread.currentThread().getName());
         onClear();
         onUseProgram();
         onSetExpandData();

@@ -36,6 +36,7 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer 
     public CameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+        Log.e("CameraView", "CameraView Constructor Thread name=" + Thread.currentThread().getName());
     }
 
     private void init(){
@@ -61,7 +62,7 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer 
         mCameraDrawer.getSurfaceTexture().setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
             @Override
             public void onFrameAvailable(SurfaceTexture surfaceTexture) {
-                Log.e("CameraView", "CameraView onFrameAvailable");
+                Log.e("CameraView", "CameraView onFrameAvailable Thread name=" + Thread.currentThread().getName());
                 requestRender();
             }
         });
@@ -88,6 +89,7 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer 
 
     @Override
     public void onDrawFrame(GL10 gl) {
+        Log.d("CameraView", "CameraView onDrawFrame Thread name=" + Thread.currentThread().getName());
         mCameraDrawer.onDrawFrame(gl);
     }
 

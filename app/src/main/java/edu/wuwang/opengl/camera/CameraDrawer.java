@@ -91,7 +91,7 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 gl) {
-        Log.d("CameraDrawer", "CameraDrawer onDrawFrame");
+        Log.d("CameraDrawer", "CameraDrawer onDrawFrame Thread name=" + Thread.currentThread().getName());
         if(surfaceTexture!=null){
             surfaceTexture.updateTexImage();
         }
