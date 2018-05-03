@@ -1,5 +1,6 @@
 package edu.wuwang.opengl.camera;
 
+import android.util.Log;
 import android.view.View;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -324,6 +325,7 @@ public class TextureController implements GLSurfaceView.Renderer {
                 @Override
                 public EGLSurface createWindowSurface(EGL10 egl, EGLDisplay display, EGLConfig
                     config, Object window) {
+                    Log.d("GLView", "GLView createWindowSurface");
                     return egl.eglCreateWindowSurface(display,config,surface,null);
                 }
 
@@ -339,10 +341,12 @@ public class TextureController implements GLSurfaceView.Renderer {
         }
 
         public void attachedToWindow(){
+            Log.d("GLView", "GLView attachedToWindow");
             super.onAttachedToWindow();
         }
 
         public void detachedFromWindow(){
+            Log.d("GLView", "GLView detachedFromWindow");
             super.onDetachedFromWindow();
         }
 
