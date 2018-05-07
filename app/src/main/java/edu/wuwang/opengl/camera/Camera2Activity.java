@@ -97,11 +97,16 @@ public class Camera2Activity extends BaseActivity implements FrameCallback {
             setContentView();
             mSurfaceView = (SurfaceView)findViewById(R.id.mSurface);
             mController = new TextureController(Camera2Activity.this);
-//            WaterMarkFilter filter=new WaterMarkFilter(getResources());
-//            filter.setWaterMark(BitmapFactory.decodeResource(getResources(),R.mipmap.logo));
-//            filter.setPosition(300,50,300,150);
-//            mController.addFilter(filter);
+            //添加水印
+            WaterMarkFilter filter=new WaterMarkFilter(getResources());
+            filter.setWaterMark(BitmapFactory.decodeResource(getResources(),R.mipmap.bg));
+            filter.setPosition(300,50,300,150);
+            //添加灰色滤镜
+            mController.addFilter(new GrayFilter(getResources()));
+            //添加动图
             onFilterSet(mController);
+            //添加水印
+            mController.addFilter(filter);
             mController.setFrameCallback(720, 1280, Camera2Activity.this);
             mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
                 @Override

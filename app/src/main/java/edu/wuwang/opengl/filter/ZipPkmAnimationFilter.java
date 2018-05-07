@@ -61,8 +61,8 @@ public class ZipPkmAnimationFilter extends AFilter {
         emptyBuffer=ByteBuffer.allocateDirect(ETC1.getEncodedDataSize(width,height));
         this.width=width;
         this.height=height;
-        GLES20.glEnable(GLES20.GL_BLEND);
-        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA,GLES20.GL_ONE_MINUS_SRC_ALPHA);
+//        GLES20.glEnable(GLES20.GL_BLEND);
+//        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA,GLES20.GL_ONE_MINUS_SRC_ALPHA);
         mBaseFilter.setSize(width, height);
     }
 
@@ -114,6 +114,10 @@ public class ZipPkmAnimationFilter extends AFilter {
 
     @Override
     public void draw() {
+        GLES20.glDisable(GLES20.GL_DEPTH_TEST);
+        GLES20.glEnable(GLES20.GL_BLEND);
+//        GLES20.glBlendFunc(GLES20.GL_SRC_COLOR,GLES20.GL_DST_ALPHA);
+        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA,GLES20.GL_ONE_MINUS_SRC_ALPHA);
         if(getTextureId()!=0){
             mBaseFilter.setTextureId(getTextureId());
             mBaseFilter.draw();
@@ -121,6 +125,8 @@ public class ZipPkmAnimationFilter extends AFilter {
         GLES20.glViewport(100,0,width/6,height/6);
         super.draw();
         GLES20.glViewport(0,0,width,height);
+        GLES20.glDisable(GLES20.GL_BLEND);
+
     }
 
     @Override
