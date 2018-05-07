@@ -18,6 +18,8 @@ import android.opengl.GLES20;
 import edu.wuwang.opengl.utils.MatrixUtils;
 
 /**
+ * 混合因子：https://blog.csdn.net/w2865673691/article/details/50053721
+ *           https://blog.csdn.net/junzia/article/details/76580379
  * Description:
  */
 public class GroupFilter extends AFilter{
