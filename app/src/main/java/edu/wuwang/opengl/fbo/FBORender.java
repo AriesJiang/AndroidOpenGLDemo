@@ -66,6 +66,7 @@ public class FBORender implements GLSurfaceView.Renderer {
         if(mBitmap!=null&&!mBitmap.isRecycled()){
             createEnvi();
             GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fFrame[0]);
+            //为帧缓冲对象FBO添加2D纹理，即fTexture[1]
             GLES20.glFramebufferTexture2D(GLES20.GL_FRAMEBUFFER, GLES20.GL_COLOR_ATTACHMENT0,
                 GLES20.GL_TEXTURE_2D, fTexture[1], 0);
             GLES20.glFramebufferRenderbuffer(GLES20.GL_FRAMEBUFFER, GLES20.GL_DEPTH_ATTACHMENT,
@@ -73,8 +74,8 @@ public class FBORender implements GLSurfaceView.Renderer {
             GLES20.glViewport(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
             mFilter.setTextureId(fTexture[0]);
             mFilter.draw();
-            GLES20.glReadPixels(0, 0, mBitmap.getWidth(), mBitmap.getHeight(), GLES20.GL_RGBA,
-                GLES20.GL_UNSIGNED_BYTE, mBuffer);
+            GLES20.glReadPixels(0, 0, mBitmap.getWidth(), mBitmap.getHeight(), GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, mBuffer);
+            //从fTexture[1]的纹理中读取帧缓存数据
             if(mCallback!=null){
                 mCallback.onCall(mBuffer);
             }
